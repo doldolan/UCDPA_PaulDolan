@@ -15,3 +15,10 @@ Customers.dropna(axis=1, inplace=True)
 print(Orders_Fact.isna().sum())
 Orders_Fact['Discount'] = Orders_Fact['Discount'].fillna(0)
 print(Orders_Fact.isna().sum())
+
+# Using a dictionary and replace() to map to proper country names
+Customers['Country'].replace({'US': 'United States', 'AU': 'Australia', 'CA': 'Canada',
+                                                       'DE': 'Germany', 'IL': 'Israel', 'TR': 'Turkey',
+                                                       'SA': 'South Africa'}, inplace=True)
+print(Customers['Country'])
+
