@@ -22,3 +22,12 @@ Customers['Country'].replace({'US': 'United States', 'AU': 'Australia', 'CA': 'C
                                                        'SA': 'South Africa'}, inplace=True)
 print(Customers['Country'])
 
+# iterate through each row and select productID and Product Name
+for index, row in Product_Dim.iterrows():
+    print(row['Product_ID'], row['Product_Name'])
+
+# using numpy aggregate functions to get the mean. The data type needs to right for it tot work
+print(Orders_Fact['Customer_ID'].mean())
+
+max_retail_price = Orders_Fact['Total_Retail_Price'].max()
+print(max_retail_price)
