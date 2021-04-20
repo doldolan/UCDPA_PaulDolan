@@ -6,7 +6,7 @@ from bokeh.io import output_file, show, curdoc
 from bokeh.plotting import figure
 from bokeh.models import ColumnDataSource,HoverTool
 # import geopandas as gpd
-import folium
+# import folium
 
 Customers = pd.read_csv(r"C:\Users\Paul Dolan\Downloads\UCD Project\CUSTOMER.csv")
 
@@ -24,10 +24,10 @@ data_clean(r"C:\Users\Paul Dolan\Downloads\UCD Project\CUSTOMER.csv")
 # Looking at the first few rows of data
 print(Customers.head())
 
-# Printing the unique countries from customers table
+# Printing the unique countries from the customers table
 print(Customers.Country.unique())
 
-# Creating a dictionary to map and replace the 2 letter country names to full country names and saving the changes
+# Creating a dictionary to map and replace the 2 letter country names to their full country names and saving the changes
 # into the same table
 Customers['Country'].replace({'US': 'United States', 'AU': 'Australia', 'CA': 'Canada',
                               'DE': 'Germany', 'IL': 'Israel', 'TR': 'Turkey',
@@ -41,7 +41,7 @@ Customers.dropna(axis=1, inplace=True)
 Customers.info()
 
 
-# Loading in Orders Fact table
+# Loading in the Orders Fact table
 Orders_Fact = pd.read_csv(r"C:\Users\Paul Dolan\Downloads\UCD Project\ORDER_FACT.csv")
 
 # Looking at column and row information in the table
