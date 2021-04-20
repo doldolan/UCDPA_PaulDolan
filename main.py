@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from bokeh.io import output_file,show, curdoc
+from bokeh.io import output_file, show, curdoc
 from bokeh.plotting import figure
 from bokeh.models import ColumnDataSource,HoverTool
 # import geopandas as gpd
@@ -11,7 +11,7 @@ import folium
 Customers = pd.read_csv(r"C:\Users\Paul Dolan\Downloads\UCD Project\CUSTOMER.csv")
 
 
-# Creating a function to cleanse the csv file and keeping the changes
+# Creating a function to cleanse a csv file and keeping the changes
 def data_clean(path):
     new_data = pd.read_csv(path)
     new_data.drop_duplicates(inplace=True)
@@ -27,7 +27,7 @@ print(Customers.head())
 # Printing the unique countries from customers table
 print(Customers.Country.unique())
 
-# Creating a dictionary to replace the 2 letter country names to full country names and saving the changes
+# Creating a dictionary to map and replace the 2 letter country names to full country names and saving the changes
 # into the same table
 Customers['Country'].replace({'US': 'United States', 'AU': 'Australia', 'CA': 'Canada',
                               'DE': 'Germany', 'IL': 'Israel', 'TR': 'Turkey',
@@ -35,7 +35,7 @@ Customers['Country'].replace({'US': 'United States', 'AU': 'Australia', 'CA': 'C
 # Checking to see if my dictionary worked
 print(Customers.Country.unique())
 
-# Checking for any columns that are blank and dropping them and keeping the changes to the existing table
+# Checking for any columns that are blank, dropping them and keeping the changes to the existing table
 Customers.info()
 Customers.dropna(axis=1, inplace=True)
 Customers.info()
@@ -44,10 +44,10 @@ Customers.info()
 # Loading in Orders Fact table
 Orders_Fact = pd.read_csv(r"C:\Users\Paul Dolan\Downloads\UCD Project\ORDER_FACT.csv")
 
-# Looking at column information in the table
+# Looking at column and row information in the table
 print(Orders_Fact.info())
 
-# I noticed there was blanks in the Discount column so I wanted to get a count of how many
+# I noticed there was blanks in the Discount column, so I wanted to get a sense of how many
 print(Orders_Fact.isna().sum())
 
 # Replacing the blanks with 0s in the Discount column & checking to see if the .fillna function worked
@@ -77,10 +77,10 @@ print(count, 'orders where they have over 3 quantities')
 Product_Dim = pd.read_csv(r"C:\Users\Paul Dolan\Downloads\UCD Project\PRODUCT_DIM.csv")
 Product_Dim.info()
 
-# Finding out which Product Line is the most popular and printing the first 30
+# Finding out which Product Line is the most popular
 print(Product_Dim['Product_Line'].value_counts().idxmax())
 
-# Looping through the table to match up
+# Looping through the table to match up ProductId and Product and printing the first 30
 for index, row in Product_Dim.iloc[:30].iterrows():
     print(row['Product_ID'], row['Product_Name'])
 
@@ -175,19 +175,19 @@ show(plot)
 
 
 # Geospatial Analysis
-IrelandCovidStats = gpd.read_file(r'C:\Users\Paul Dolan\Downloads\
-UCD Project\Covid19CountyStatisticsHPSCIreland.geojson')
+# IrelandCovidStats = gpd.read_file(r'C:\Users\Paul Dolan\Downloads\
+# UCD Project\Covid19CountyStatisticsHPSCIreland.geojson')
 
 # Making sure the file is using the standard coordinate reference system like Google Maps
-IrelandCovidStats.to.crs(3857)
+# IrelandCovidStats.to.crs(3857)
 
 # Creating a starting point of the Ireland map
-Irelandmap = folium.map(location=[53.1424, 7.6921], zoom_start=2, tiles="Stamen Terrain")
+# Irelandmap = folium.map(location=[53.1424, 7.6921], zoom_start=2, tiles="Stamen Terrain")
 
 # Building a for loop to get the multiple latitude and longitude points from dataframe and adding it the map
-for i in range(0, len(IrelandCovidStats)):
-    folium.Marker(
-        location=[IrelandCovidStats.iloc[i]['lat'], IrelandCovidStats.iloc[i]['long']],
-        popup=IrelandCovidStats.iloc[i]['CountyName']).add_to(Irelandmap)
+# for i in range(0, len(IrelandCovidStats)):
+#   folium.Marker(
+#       location=[IrelandCovidStats.iloc[i]['lat'], IrelandCovidStats.iloc[i]['long']],
+#       popup=IrelandCovidStats.iloc[i]['CountyName']).add_to(Irelandmap)
 
-display(Irelandmap)
+# display(Irelandmap)
