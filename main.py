@@ -1,3 +1,4 @@
+# Importing packages
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -8,10 +9,11 @@ from bokeh.models import ColumnDataSource,HoverTool
 # import geopandas as gpd
 # import folium
 
+# Loading in Customers csv
 Customers = pd.read_csv(r"C:\Users\Paul Dolan\Downloads\UCD Project\CUSTOMER.csv")
 
 
-# Creating a function to cleanse a csv file and keeping the changes
+# Creating a function to cleanse a csv file and keep the changes
 def data_clean(path):
     new_data = pd.read_csv(path)
     new_data.drop_duplicates(inplace=True)
@@ -35,7 +37,7 @@ Customers['Country'].replace({'US': 'United States', 'AU': 'Australia', 'CA': 'C
 # Checking to see if my dictionary worked
 print(Customers.Country.unique())
 
-# Checking for any columns that are blank, dropping them and keeping the changes to the existing table
+# Checking for any blank columns, dropping them and keeping the changes to the Customer table
 Customers.info()
 Customers.dropna(axis=1, inplace=True)
 Customers.info()
@@ -54,7 +56,7 @@ print(Orders_Fact.isna().sum())
 Orders_Fact['Discount'] = Orders_Fact['Discount'].fillna(0)
 print(Orders_Fact.isna().sum())
 
-# Adding in a year and month column for the Order Dates ahead of the visuals
+# Adding in a year and month column from the Order Date column ahead creating the visuals
 Orders_Fact['Order_Year'] = pd.DatetimeIndex(Orders_Fact['Order_Date']).year
 Orders_Fact['Order_Month'] = pd.DatetimeIndex(Orders_Fact['Order_Date']).month
 
